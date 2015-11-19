@@ -24,13 +24,31 @@ but with settings for your own discourse instance:
 
 ## Usage
 
+Type `discourse` to see a list of available commands:
+
+    $ discourse
+
+    Commands:
+    discourse categories      # returns a list of categories
+    discourse help [COMMAND]  # Describe available commands or one specific command
+
+To see a list of categories:
+
     $ discourse categories
+
+    The following 5 categories were found:
+    Staff
+    Uncategorized
+    Lounge
+    Site Feedback
+    Parent Category2
+
+More commands coming soon!
 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at
-https://github.com/oblakeerickson/discourse_cli. This project is intended to be
+Bug reports and pull requests are welcome. This project is intended to be
 a safe, welcoming space for collaboration, and contributors are expected to
 adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
