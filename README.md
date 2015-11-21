@@ -29,19 +29,39 @@ Type `discourse` to see a list of available commands:
     $ discourse
 
     Commands:
-    discourse categories      # returns a list of categories
-    discourse help [COMMAND]  # Describe available commands or one specific command
+    discourse categories            # returns a list of categories
+    discourse help [COMMAND]        # Describe available commands or one specific command
+    discourse topics CATEGORY_SLUG  # returns a list of all the topics in the specified category
 
 To see a list of categories:
 
     $ discourse categories
+    
+    The following 6 categories were found:
+    
+    4 Staff staff
+    1 Uncategorized uncategorized
+    2 Lounge lounge
+    3 Site Feedback site-feedback
+    5 Parent Category2 parent-category
+    7 test_category test-category
 
-    The following 5 categories were found:
-    Staff
-    Uncategorized
-    Lounge
-    Site Feedback
-    Parent Category2
+
+To see a list of topics in a category:
+
+    $ discourse topics test-category | head
+    
+    The following 203 topics were found in the test-category category:
+    
+    220 Ruvxqzlajycmikwbfspndgheto
+    219 Vgsdeloyuzbmpixqrtwjhfckna
+    218 Fujohcvsnqptbaerwdzxgmlyki
+    217 Yreaikwflptouscvjbxdqmghzn
+    216 Jmytihfaervoklpsudngczbxwq
+    215 Ylnkbcmujrqvdosfitpxzeaghw
+    214 Rzageqphtbcnsfmxudlwiokjvy
+    213 Afngbetiqovyxjpwklsczhdrmu
+
 
 More commands coming soon!
 
