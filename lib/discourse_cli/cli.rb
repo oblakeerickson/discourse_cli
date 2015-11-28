@@ -40,5 +40,37 @@ module DiscourseCli
         puts "#{v['id']} #{v['title']}"
       end
     end
+
+    desc "posts TOPIC_ID", "returns a list of posts in the specified topic"
+    def posts(topic_id)
+      client = DiscourseCli::Client.client
+      post_ids = []
+      
+      # fetch topic
+      topic = client.topic(topic_id)
+
+      # array of all post id's in topic
+      stream = topic['post_stream']['stream']
+      
+      # get the first ~20 posts in the topic 
+      posts = topic['post_stream']['posts']
+      posts.each do |p|
+        post_ids.push(p['id'])
+        puts "#{p['id']} #{p['cooked'][3..13]}..."
+      end 
+
+      # get the rest of the posts in chunks of 20
+      diff = stream - post_ids
+      while diff.count > 0 do
+        response = client.topic_posts(topic_id, diff.slice(0, 19))
+        response_posts = response['post_stream']['posts']
+        response_posts.each do |p|
+          post_ids.push(p['id'])
+          puts "#{p['id']} #{p['cooked'][3..13]}..."
+        end
+        diff = stream - post_ids
+      end
+      
+    end
   end
 end
