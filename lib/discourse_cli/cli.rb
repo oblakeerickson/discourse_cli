@@ -26,14 +26,24 @@ module DiscourseCli
       results = {}
       while count == 30 do
         topics = client.category_latest_topics(category_slug: category_slug, page: page)   
-        count = topics.count
-        topics.each do |t|
-          results[t['id']] = t
+        if !topics.include?("The requested URL or resource could not be found.")
+          count = topics.count
+          if count > 0
+            topics.each do |t|
+              results[t['id']] = t
+            end
+          end
+        else
+          count = 0 
         end
         page += 1
       end
-       
-      puts "The following #{results.count} topics were found in the #{category_slug} category:"
+      
+      if count == 0
+        puts topics
+      else
+        puts "The following #{results.count} topics were found in the #{category_slug} category:"
+      end 
       puts
 
       results.each do |k, v|
