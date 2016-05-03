@@ -16,6 +16,13 @@ module DiscourseCli
         puts "#{c['id']} #{c['name']} #{c['slug']}"
       end
     end
+    
+    desc "sub-categories PARENT_CATEGORY_ID", "returns a list of sub-categories in the specified category"
+    def sub_categories(parent_category_id)
+      client = DiscourseCli::Client.client
+      sub_categories = client.categories(parent_category_id: parent_category_id)
+      puts sub_categories
+    end
 
     desc "topics CATEGORY_SLUG", "returns a list of all the topics in the specified category"
     def topics(category_slug)
