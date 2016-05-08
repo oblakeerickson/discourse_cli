@@ -89,5 +89,12 @@ module DiscourseCli
       end
       
     end
+
+    desc "users", "returns a list of users"
+    def users
+      client = DiscourseCli::Client.client
+      u = client.group_members('trust_level_0')
+      puts u 
+    end
   end
 end
