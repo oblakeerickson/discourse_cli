@@ -29,11 +29,12 @@ Type `discourse` to see a list of available commands:
     $ discourse
 
     Commands:
-    discourse categories            # returns a list of categories
-    discourse help [COMMAND]        # Describe available commands or one specific command
-    discourse posts TOPIC_ID        # returns a list of posts in the specified topic
-    discourse sub_categories PARENT_CATEGORY_ID       # returns a list of sub-categories in the specified category
+    discourse categories                         # returns a list of categories
+    discourse help [COMMAND]                     # Describe available commands or one specific command
+    discourse posts TOPIC_ID                     # returns a list of posts in the specified topic
+    discourse sub_categories PARENT_CATEGORY_ID  # returns a list of sub-categories in the specified category
     discourse topics CATEGORY_SLUG  # returns a list of all the topics in the specified category
+    discourse users                              # returns a list of users
 
 To see a list of categories:
 
