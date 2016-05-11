@@ -96,5 +96,16 @@ module DiscourseCli
       u = client.group_members('trust_level_0')
       puts u 
     end
+
+    desc "create_category NAME DESCRIPTION", " creates a new category"
+    def create_category(name, description)
+      client = DiscourseCli::Client.client
+      category = {
+        name: name,
+        description: description
+      }
+      new_category = client.create_category(category)
+      puts new_category
+    end
   end
 end
