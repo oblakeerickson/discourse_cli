@@ -97,12 +97,13 @@ module DiscourseCli
       puts u 
     end
 
-    desc "create_category NAME DESCRIPTION", " creates a new category"
-    def create_category(name, description)
+    desc "create_category NAME COLOR TEXT_COLOR", " creates a new category"
+    def create_category(name, color, text_color)
       client = DiscourseCli::Client.client
       category = {
         name: name,
-        description: description
+        color: color,
+        text_color: text_color 
       }
       new_category = client.create_category(category)
       puts new_category
