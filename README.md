@@ -30,7 +30,7 @@ Type `discourse` to see a list of available commands:
 
     Commands:
     discourse categories                             # returns a list of categories
-    discourse create_category NAME COLOR TEXT_COLOR  #  creates a new category
+    discourse create_category NAME COLOR TEXT_COLOR  # creates a new category
     discourse help [COMMAND]                         # Describe available commands or one specific command
     discourse posts TOPIC_ID                         # returns a list of posts in the specified topic
     discourse sub_categories PARENT_CATEGORY_ID      # returns a list of sub-categories in the specified category
