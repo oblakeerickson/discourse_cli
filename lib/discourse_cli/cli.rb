@@ -57,6 +57,17 @@ module DiscourseCli
         puts "#{v['id']} #{v['title']}"
       end
     end
+    
+    desc "create_topic TITLE RAW", "creates a new topic"
+    def create_topic(title, raw) 
+      client = DiscourseCli::Client.client
+      topic = {
+        title: title,
+        raw: raw
+      }
+      new_topic = client.create_topic(topic)
+      puts new_topic
+    end
 
     desc "posts TOPIC_ID", "returns a list of posts in the specified topic"
     def posts(topic_id)
