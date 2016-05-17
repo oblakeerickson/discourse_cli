@@ -69,6 +69,17 @@ module DiscourseCli
       puts new_topic
     end
 
+    desc "create_post TOPIC_ID RAW", "creates a new post"
+    def create_post(topic_id, raw)
+      client = DiscourseCli::Client.client
+      post = {
+        topic_id: topic_id,
+        raw: raw
+      }
+      new_post = client.create_post(post)
+      puts new_post
+    end
+
     desc "posts TOPIC_ID", "returns a list of posts in the specified topic"
     def posts(topic_id)
       client = DiscourseCli::Client.client
