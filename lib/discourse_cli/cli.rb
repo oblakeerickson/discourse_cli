@@ -80,6 +80,15 @@ module DiscourseCli
       puts new_post
     end
 
+    desc "create_group NAME", "creates a new group"
+    def create_group(name)
+      client = DiscourseCli::Client.client
+      group = {
+        name: name
+      }
+      client.create_group(group)
+    end
+
     desc "posts TOPIC_ID", "returns a list of posts in the specified topic"
     def posts(topic_id)
       client = DiscourseCli::Client.client
