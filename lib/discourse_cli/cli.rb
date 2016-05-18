@@ -139,5 +139,12 @@ module DiscourseCli
       new_category = client.create_category(category)
       puts new_category
     end
+    
+    desc "get_total_stats", "returns the totals from the dashboard stats"
+    def get_total_stats
+      client = DiscourseCli::Client.client
+      stats = client.get_dashboard_stats_totals
+      puts stats
+    end
   end
 end
