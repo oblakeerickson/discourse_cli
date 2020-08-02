@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require_relative "../lib/app.rb"
+require 'discourse_cli'
 
 DiscourseCLI::App.main
