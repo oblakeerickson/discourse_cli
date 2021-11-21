@@ -6,7 +6,8 @@ require 'discourse_api'
 module DiscourseCLI
   class Client
     attr_accessor :host, :api_username, :api_key
- 
+
+    # change this to a hash, so 1 arg
     def initialize(host, api_username, api_key)
       @host = host
       @api_username = api_username
@@ -14,15 +15,39 @@ module DiscourseCLI
       @conn = DiscourseApi::Client.new(@host)
       @conn.api_key = @api_key
       @conn.api_username = @api_username
-    end 
+    end
+
+    def conn
+      @conn
+    end
+
   end
 
+  # There shouldn't be in puts statements here, they should be in an output class
   class App
+    def initialize(config)
+      site = 'desktop'
+      @config = config
+      client = DiscourseCLI::Client.new(
+        @config[site]['host'],
+        @config[site]['api_username'],
+        @config[site]['api_key']
+      )
+      @client = client.conn
+    end
+
+    def list_topics
+      topics = @client.latest_topics
+      topics.each do |t|
+        puts "#{t['id']} #{t['title']} posts: #{t['posts_count']}"
+      end
+    end
+
     def self.main
-      @config = YAML.load_file("#{Dir.home}/.discourse_cli.yml")
-      client = DiscourseApi::Client.new(@config['localhost']['host'])
-      client.api_key = @config['localhost']['api_key']
-      client.api_username = @config['localhost']['api_username']
+      site = 'desktop'
+      client = DiscourseApi::Client.new(@config[site]['host'])
+      client.api_key = @config[site]['api_key']
+      client.api_username = @config[site]['api_username']
       command = ARGV[0]
 
       if command == nil || command == ""

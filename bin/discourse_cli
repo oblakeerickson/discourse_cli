@@ -1,4 +1,36 @@
 #!/usr/bin/env ruby
 require 'discourse_cli'
 
-DiscourseCLI::App.main
+CONFIG_FILE = "#{Dir.home}/.discourse_cli.yml"
+config = {}
+if File.file?(CONFIG_FILE)
+  config = YAML.load_file(CONFIG_FILE)
+else
+  puts "Please create a ~/.discourse_cli.yml config file."
+  exit 1
+end
+
+cli = DiscourseCLI::App.new(config)
+
+command_string = ARGV
+if command_string.nil? || command_string.empty?
+  puts "Please enter a command"
+  puts
+  puts "  topic list"
+  # Auto generate a list of available commands
+end
+
+command = command_string[0]
+
+#topic list
+
+case command
+when "topic"
+  # check for 2nd options
+  option = command_string[1]
+  case option
+  when "list"
+    cli.list_topics
+  end
+end
+
