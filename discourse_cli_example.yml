@@ -1,0 +1,11 @@
+sites:
+  localhost:
+    host: 'http://localhost:4200'
+    api_key: ''
+    api_username: 'system'
+    default: true
+  meta:
+    host: 'https://meta.discourse.org'
+    api_key: ''
+    api_username: 'system'
+

@@ -16,7 +16,7 @@ command_string = ARGV
 if command_string.nil? || command_string.empty?
   puts "Please enter a command"
   puts
-  puts "  topic list"
+  puts "  topic list latest"
   # Auto generate a list of available commands
 end
 
@@ -30,7 +30,12 @@ when "topic"
   option = command_string[1]
   case option
   when "list"
-    cli.list_topics
+    # latest, top, new
+    list_command = command_string[2]
+    case list_command
+    when "latest"
+      topics = cli.topic.list_latest
+    end
   end
 end
 
