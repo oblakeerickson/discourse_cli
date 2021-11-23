@@ -10,8 +10,6 @@ else
   exit 1
 end
 
-cli = DiscourseCLI::App.new(config)
-
 command_string = ARGV
 if command_string.nil? || command_string.empty?
   puts "Please enter a command"
@@ -20,15 +18,32 @@ if command_string.nil? || command_string.empty?
   # Auto generate a list of available commands
 end
 
-command = command_string[0]
+# Check for --options
+options = {}
+commands = []
+command_string.each_with_index do |element, i|
+  if element[0..1] == "--"
+    options[element] = command_string[i+1]
+    i += 1
+  else
+    commands << element
+  end
+end
 
-#topic list
+site = nil
+if options["--site"]
+  site = options["--site"]
+end
+
+cli = DiscourseCLI::App.new(config, site)
+
+command = commands[0]
 
 case command
 when "topic"
   # check for 2nd options
-  option = command_string[1]
-  case option
+  topic_command = command_string[1]
+  case topic_command
   when "list"
     # latest, top, new
     list_command = command_string[2]
