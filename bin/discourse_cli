@@ -12,10 +12,18 @@ end
 
 command_string = ARGV
 if command_string.nil? || command_string.empty?
-  puts "Please enter a command"
+  puts "A command-line tool to interact with Discourse sites."
   puts
-  puts "  topic list latest"
-  # Auto generate a list of available commands
+  puts "Usage:"
+  puts "  discourse_cli [command]"
+  puts
+  puts "Topic commands:"
+  puts "  topic list latest      List the latest topics"
+  puts "  topic create --title <title> --body <body>"
+  puts
+  puts "Flags:"
+  puts "  --site string          Specify a different site other than the default"
+  # TODO: Auto generate a list of available commands
 end
 
 # Check for --options
@@ -35,6 +43,8 @@ if options["--site"]
   site = options["--site"]
 end
 
+# Output formats to support (text, table, json)
+
 cli = DiscourseCLI::App.new(config, site)
 
 command = commands[0]
@@ -51,6 +61,12 @@ when "topic"
     when "latest"
       topics = cli.topic.list_latest
     end
+  when "create"
+    params = {
+      title: options["--title"],
+      raw: options["--body"]
+    }
+    cli.topic.create(params)
   end
 end
 

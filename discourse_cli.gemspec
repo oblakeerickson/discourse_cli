@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/oblakeerickson/discourse_cli'
   s.license     = 'MIT'
 
-  s.add_dependency 'discourse_api'
+  s.add_dependency 'discourse_api', '~> 0.47'
+  s.add_dependency 'tiny_params', '~> 0.1'
 end
 
